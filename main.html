@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+  *{
+    padding: 10px;
+    margin: 0;
+  }
+
+  body {background-color: rgb(65, 74, 75);}
+  h1   {color: blue;}
+  p    {color: red;}
+
+  table{
+    margin-left: auto;
+  margin-right: auto;
+  border: 1px solid white;
+  border-collapse: collapse;
+  }
+  td{
+    text-transform: capitalize;
+    font-style: "font-family:'Courier New'"
+  
+  }
+  th, td {
+  background-color: #3b75cc;
+}
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+h1{
+  text-align: center;
+  font-size: 40PX;
+  color: black;
+
+}
+  </style>
+<body>
+
+  <header>
+    <h1>Pokemon list</h1>
+  </header>
+
+<div ng-app="myApp" ng-controller="customersCtrl"> 
+
+  <table >
+    <tr ng-repeat="x in myData" >
+        <td>{{x.name}}</td>
+  
+        <td > <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{1}}.png"> </td></tr>
+</table>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+  $http.get("https://pokeapi.co/api/v2/pokemon/?limit=151").then(function (response) {
+      $scope.myData = response.data.results;
+  });
+});
+
+</script>
+
+</body>
+</html>
